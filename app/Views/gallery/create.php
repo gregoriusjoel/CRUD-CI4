@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container py-4">
-    <h2 class="mb-4">Tambah Gambar ke Spotify Gallery</h2>
+    <h2 class="mb-4">Tambah Lagu ke Spotify Gallery</h2>
 
     <form action="<?= base_url('gallery/store') ?>" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="mb-3">

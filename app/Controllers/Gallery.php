@@ -9,10 +9,39 @@ class Gallery extends BaseController
     public function index()
     {
         $model = new GalleryModel();
-        $data['galleries'] = $model->findAll();
+        $keyword = $this->request->getGet('q');
+
+        if ($keyword) {
+            $model->like('title', $keyword)
+                ->orLike('artist', $keyword);
+        }
+
+        $data['galleries'] = $model->paginate(8); // tampilkan 8 per halaman
+        $data['pager'] = $model->pager;
+        $data['keyword'] = $keyword;
 
         return view('gallery/index', $data);
     }
+
+    public function search()
+    {
+        $keyword = $this->request->getGet('q');
+        $galleryModel = new \App\Models\GalleryModel();
+
+        $results = $galleryModel
+            ->like('title', $keyword)
+            ->orLike('artist', $keyword)
+            ->findAll();
+
+        $gridView = view('gallery/_list', ['galleries' => $results]);
+        $tableView = view('gallery/_table', ['galleries' => $results]);
+
+        return $this->response->setJSON([
+            'grid' => $gridView,
+            'table' => $tableView
+        ]);
+    }
+
 
     public function create()
     {
@@ -90,5 +119,6 @@ class Gallery extends BaseController
 
         return redirect()->to('/gallery');
     }
+    
     
 }
