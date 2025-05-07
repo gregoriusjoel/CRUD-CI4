@@ -3,61 +3,76 @@
 Aplikasi **CRUD Gallery** sederhana dengan tema Spotify menggunakan **CodeIgniter 4** dan **Bootstrap 5**. Aplikasi ini memungkinkan kamu untuk menambahkan, menampilkan, mengedit, dan menghapus gambar album lagu beserta judul dan penyanyi.
 
 ## ✨ Fitur
-- Tambah gambar beserta judul lagu dan penyanyi
-- Tampilkan galeri dengan UI modern dan animasi smooth
-- Edit data lagu
-- Hapus data 
+
+* Tambah gambar beserta judul lagu dan penyanyi
+* Tampilkan galeri dengan UI modern dan animasi smooth
+* Edit data lagu
+* Hapus data
 
 ## 📦 Requirements
-- PHP 8.1 atau lebih baru
-- MySQL / MariaDB
-- XAMPP / Laragon / Apache server
-- Composer (jika ingin menjalankan dengan `php spark serve`)
+
+* PHP 8.1 atau lebih baru
+* MySQL / MariaDB
+* XAMPP / Laragon / Apache server
+* Composer (jika ingin menjalankan dengan `php spark serve`)
 
 ## 🚀 Cara Install dan Menjalankan
 
-```bash
-# 1. Buka XAMPP dan aktifkan Apache & MySQL
+1. **Aktifkan Apache dan MySQL**
+   Buka XAMPP, Laragon, atau software serupa, lalu aktifkan **Apache** dan **MySQL**.
 
-# 2. Masuk ke direktori htdocs
-cd C:/xampp/htdocs
+2. **Salin Project ke Direktori Web Server**
 
-# 3. Salin project ke dalam folder htdocs, misalnya: /ujian_sismul
+   ```bash
+   cd C:/xampp/htdocs
+   git clone https://github.com/username/ujian_sismul.git
+   ```
 
-# 4. Buat database di phpMyAdmin:
-# Akses: http://localhost/phpmyadmin
-# Jalankan query SQL berikut:
-CREATE DATABASE ujian_sismul;
+3. **Buat Database dan Tabel**
+   Akses `http://localhost/phpmyadmin`, lalu jalankan SQL berikut:
 
-USE ujian_sismul;
+   ```sql
+   CREATE DATABASE ujian_sismul;
+   USE ujian_sismul;
 
-CREATE TABLE gallery (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  artist VARCHAR(255) NOT NULL,
-  image VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+   CREATE TABLE gallery (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     title VARCHAR(255) NOT NULL,
+     artist VARCHAR(255) NOT NULL,
+     image VARCHAR(255) NOT NULL,
+     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+   );
+   ```
 
-# 5. Edit file .env di root project dan sesuaikan koneksi database:
-# Uncomment dan ubah bagian berikut:
-database.default.hostname = localhost
-database.default.database = ujian_sismul
-database.default.username = root
-database.default.password =
-database.default.DBDriver = MySQLi
+4. **Sesuaikan Konfigurasi Database**
+   Buka file `.env` di root project, lalu ubah konfigurasi database seperti ini:
 
-# 6. Buat folder uploads di public dan ubah permission-nya:
-cd ujian_sismul/public
-mkdir uploads
-chmod 777 uploads
+   ```ini
+   database.default.hostname = localhost
+   database.default.database = ujian_sismul
+   database.default.username = root
+   database.default.password =
+   database.default.DBDriver = MySQLi
+   ```
 
-# 7. Jalankan project:
-# Jika pakai XAMPP:
-http://localhost/ujian_sismul/public/gallery
+5. **Buat Folder Uploads**
 
-# Jika pakai spark:
-cd ../../ujian_sismul
-php spark serve
-# Akses di browser:
-http://localhost:8080/gallery
+   ```bash
+   cd ujian_sismul/public
+   mkdir uploads
+   chmod 777 uploads
+   ```
+
+6. **Jalankan Aplikasi**
+
+   * Jika menggunakan **XAMPP**, akses lewat browser:
+     [http://localhost/ujian\_sismul/public/gallery](http://localhost/ujian_sismul/public/gallery)
+
+   * Jika menggunakan **CLI (Spark)**:
+
+     ```bash
+     cd ujian_sismul
+     php spark serve
+     ```
+
+     Lalu buka: [http://localhost:8080/gallery](http://localhost:8080/gallery)
